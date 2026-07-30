@@ -63,6 +63,12 @@ def berserk(actor, target):
     dmg = target.take_damage(int(actor.attack * 2))
     return f"{actor.name} goes berserk, dealing {dmg} damage but taking {self_damage} recoil damage!"
 
+def berserk(actor, target):
+    self_damage = int(actor.max_hp * 0.1)
+    actor.hp = max(1, actor.hp - self_damage)
+    dmg = target.take_damage(int(actor.attack * 2))
+    return f"{actor.name} goes berserk, dealing {dmg} damage but taking {self_damage} recoil damage!"
+
 
 # ---------------------------------------------------------------------------
 # Mage moves
@@ -104,7 +110,6 @@ def stunning_blow(actor, target):
         target.add_status_effect(StatusEffect("Stun", duration=1))
         return f"{actor.name} stuns {target.name} with a blow for {dmg} damage!"
     return f"{actor.name} strikes {target.name} for {dmg} damage, but they resist the stun."
-
 
 # ---------------------------------------------------------------------------
 # Cleric moves
