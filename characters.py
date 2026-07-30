@@ -99,3 +99,12 @@ class Rogue(Character):
         from moves import stab, quick_strike, stunning_blow
 
         self.moves = [stab, quick_strike, stunning_blow]
+        
+class Cleric(Character):
+    """A support-focused healer: strong healing, low attack, moderate defense."""
+
+    def __init__(self, name):
+        super().__init__(name, hp=100, attack=10, defense=6, speed=7)
+        from moves import smite, greater_heal, blessing
+
+        self.moves = [smite, greater_heal, blessing]
