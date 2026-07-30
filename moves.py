@@ -57,6 +57,12 @@ def defend(actor, target):
     actor.defense += 5
     return f"{actor.name} braces and raises their defense."
 
+def berserk(actor, target):
+    self_damage = int(actor.max_hp * 0.1)
+    actor.hp = max(1, actor.hp - self_damage)
+    dmg = target.take_damage(int(actor.attack * 2))
+    return f"{actor.name} goes berserk, dealing {dmg} damage but taking {self_damage} recoil damage!"
+
 
 # ---------------------------------------------------------------------------
 # Mage moves
@@ -98,3 +104,21 @@ def stunning_blow(actor, target):
         target.add_status_effect(StatusEffect("Stun", duration=1))
         return f"{actor.name} stuns {target.name} with a blow for {dmg} damage!"
     return f"{actor.name} strikes {target.name} for {dmg} damage, but they resist the stun."
+
+# ---------------------------------------------------------------------------
+# Cleric moves
+# ---------------------------------------------------------------------------
+
+def smite(actor, target):
+    dmg = target.take_damage(int(actor.attack * 0.8))
+    return f"{actor.name} smites {target.name} for {dmg} damage."
+
+
+def greater_heal(actor, target):
+    healed = actor.heal(25)
+    return f"{actor.name} channels a greater heal, restoring {healed} HP."
+
+
+def blessing(actor, target):
+    actor.attack += 3
+    return f"{actor.name} is blessed, gaining +3 attack."

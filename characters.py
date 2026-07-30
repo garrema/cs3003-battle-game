@@ -76,10 +76,9 @@ class Warrior(Character):
     def __init__(self, name):
         super().__init__(name, hp=120, attack=18, defense=8, speed=5)
         # Import here to avoid circular imports between characters.py and moves.py
-        from moves import slash, power_strike, defend
+        from moves import slash, power_strike, defend, berserk
 
-        self.moves = [slash, power_strike, defend]
-
+        self.moves = [slash, power_strike, defend, berserk]
 
 class Mage(Character):
     """A fragile spellcaster: high attack via magic, low defense, high speed."""
@@ -99,3 +98,12 @@ class Rogue(Character):
         from moves import stab, quick_strike, stunning_blow
 
         self.moves = [stab, quick_strike, stunning_blow]
+
+class Cleric(Character):
+    """A support-focused healer: strong healing, low attack, moderate defense."""
+
+    def __init__(self, name):
+        super().__init__(name, hp=100, attack=10, defense=6, speed=7)
+        from moves import smite, greater_heal, blessing
+
+        self.moves = [smite, greater_heal, blessing]

@@ -5,7 +5,7 @@ Command-line entry point. Sets up two characters, drives the battle_loop
 generator from battle.py, and handles all user input/output.
 """
 
-from characters import Warrior, Mage, Rogue
+from characters import Warrior, Mage, Rogue, Cleric
 from battle import battle_loop
 
 
@@ -13,6 +13,7 @@ CLASS_OPTIONS = {
     "1": ("Warrior", Warrior),
     "2": ("Mage", Mage),
     "3": ("Rogue", Rogue),
+    "4": ("Cleric", Cleric),
 }
 
 
