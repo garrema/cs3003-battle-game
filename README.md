@@ -36,26 +36,26 @@ battle-game/
   speed, status effects) and shared behavior (`take_damage`, `heal`,
   `apply_status_effects`).
 - `Warrior`, `Mage`, and `Rogue` **inherit** from `Character` and each
-  define their own move set in their constructor — this is **polymorphism**:
+  define their own move set in their constructor, this is **polymorphism**:
   the battle loop calls `actor.moves` and `move(actor, target)` without
   needing to know which subclass it's dealing with.
 - HP/stat mutation happens only through methods (`take_damage`, `heal`),
   not by reaching in and setting `self.hp` directly from outside the
-  class — a simple form of **encapsulation**.
+  class, a simple form of **encapsulation**.
 
 ### Coroutines (`battle.py`)
 
 This is the core paradigm showcase. `battle_loop()` is a Python generator
 (a function containing `yield`), which acts as a coroutine: it can pause
 mid-execution, hand control back to the caller, and resume later exactly
-where it left off — with all of its local variables (whose turn it is,
+where it left off with all of its local variables (whose turn it is,
 current round, etc.) preserved automatically.
 
 This matters because it changes *how* the control flow is expressed:
 
 - **Without coroutines** (e.g., in C), interleaving "player does something,
   wait for input, enemy does something automatically" would typically
-  require an explicit state machine — a variable tracking the current
+  require an explicit state machine, a variable tracking the current
   phase, checked with `switch`/`if` statements scattered across the game
   loop, with all "waiting" state manually saved into structs.
 - **With coroutines**, `battle_loop()` is written as a single, linear
@@ -66,7 +66,7 @@ This matters because it changes *how* the control flow is expressed:
 
 `main.py` drives the generator using `next()` to advance automatically
 (e.g., after the enemy's AI turn) and `.send(move_index)` to resume the
-generator *with a value* when the player has chosen a move — this is what
+generator *with a value* when the player has chosen a move and this is what
 makes it a true two-way coroutine rather than a simple generator that only
 produces values.
 
@@ -75,13 +75,13 @@ produces values.
 Poison and Stun (in `moves.py`) are implemented as objects with a
 `duration` and a `tick()` method, applied at the start of each turn via
 `Character.apply_status_effects()`. This shows the turn loop handling
-state that persists *across* multiple yields/resumes — a good example of
+state that persists *across* multiple yields/resumes, a good example of
 why preserving local state automatically (a coroutine's core feature) is
 useful here.
 
 ## Challenges Encountered
 
-- Getting `.send()` semantics right took some trial and error — the first
+- Getting `.send()` semantics right took some trial and error as the first
   value sent into a freshly-started generator is discarded, so the
   generator has to be "primed" with an initial `next()` call before you
   can `.send()` anything meaningful into it.
@@ -100,4 +100,4 @@ useful here.
 
 ## Author
 
-garrema (add your name / group members here)
+Monish Siddardha garre
