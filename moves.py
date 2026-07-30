@@ -29,7 +29,7 @@ class StatusEffect:
         message = f"{character.name} is affected by {self.name}."
 
         if self.name == "Poison":
-            dmg = 5
+            dmg = 4
             character.hp = max(0, character.hp - dmg)
             message = f"{character.name} takes {dmg} poison damage."
         elif self.name == "Stun":
