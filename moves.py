@@ -29,7 +29,7 @@ class StatusEffect:
         message = f"{character.name} is affected by {self.name}."
 
         if self.name == "Poison":
-            dmg = 5
+            dmg = 4
             character.hp = max(0, character.hp - dmg)
             message = f"{character.name} takes {dmg} poison damage."
         elif self.name == "Stun":
@@ -56,6 +56,12 @@ def power_strike(actor, target):
 def defend(actor, target):
     actor.defense += 5
     return f"{actor.name} braces and raises their defense."
+    
+def berserk(actor, target):
+    self_damage = int(actor.max_hp * 0.1)
+    actor.hp = max(1, actor.hp - self_damage)
+    dmg = target.take_damage(int(actor.attack * 2))
+    return f"{actor.name} goes berserk, dealing {dmg} damage but taking {self_damage} recoil damage!"
 
 def berserk(actor, target):
     self_damage = int(actor.max_hp * 0.1)
