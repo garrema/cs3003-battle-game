@@ -1,7 +1,6 @@
 # CS3003 Battle Game
 
-A turn-based battle game built in Python for CS3003 (Programming Languages,
-Summer 2026). The project demonstrates two paradigm concepts from the
+A turn-based battle game built in Python for CS3003. The project demonstrates two paradigm concepts from the
 course: **object-oriented design** (character class hierarchy) and
 **coroutines** (the turn loop, implemented as a Python generator).
 
