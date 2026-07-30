@@ -76,9 +76,9 @@ class Warrior(Character):
     def __init__(self, name):
         super().__init__(name, hp=120, attack=18, defense=8, speed=5)
         # Import here to avoid circular imports between characters.py and moves.py
-        from moves import slash, power_strike, defend
+       from moves import slash, power_strike, defend, berserk
 
-        self.moves = [slash, power_strike, defend]
+       self.moves = [slash, power_strike, defend, berserk]
 
 
 class Mage(Character):
